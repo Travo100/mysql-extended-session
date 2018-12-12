@@ -1,0 +1,32 @@
+{
+  "name": "mysql-extended-session",
+  "version": "1.0.0",
+  "description": "A MySQL extended session for the coding boot camp at UCSD",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Travo100/mysql-extended-session.git"
+  },
+  "keywords": [
+    "mysql",
+    "node",
+    "inquirer",
+    "demo",
+    "UCSD"
+  ],
+  "author": "Travis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Travo100/mysql-extended-session/issues"
+  },
+  "homepage": "https://github.com/Travo100/mysql-extended-session#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "dotenv": "^6.2.0",
+    "inquirer": "^6.2.1",
+    "mysql": "^2.16.0"
+  }
+}
