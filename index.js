@@ -39,6 +39,7 @@ function start() {
             // all the ROOMS 
             selectAllItemsFromTable("classroom", function (results) {
                 console.table(results);
+                start();
             });
         } else {
             // all the STUDENTS
@@ -66,11 +67,11 @@ function start() {
                                 {
                                     type: "rawlist",
                                     message: "What's the students room number that they are in?",
-                                    name: "classRoomId",
+                                    name: "classroomId",
                                     choices: function () {
                                         var rooms = [];
                                         for (var i = 0; i < results.length; i++) {
-                                            rooms.push(results[i].id.toString());
+                                            rooms.push(JSON.stringify(results[i]));
                                         }
                                         return rooms;
                                     }
@@ -87,8 +88,12 @@ function start() {
                                 }
                             ]).then(function (inquirerResponse) {
                                 console.log(inquirerResponse);
+                                var classroomObj = JSON.parse(inquirerResponse.classroomId);
+                                inquirerResponse.classroomId = classroomObj.id;
+                                console.log(inquirerResponse);
 
                                 // INSERT the record into our table 
+                                // add a student to roster 
                                 connection.query("INSERT INTO student SET ?", [inquirerResponse], function (err, results) {
                                     if (err) throw err;
                                     selectAllItemsFromTable("student", function (results) {
@@ -100,6 +105,7 @@ function start() {
                         });
                     } else {
                         // exit 
+                        console.log("Goodbye!")
                         connection.end();
                     }
                 });
@@ -108,5 +114,5 @@ function start() {
     });
 }
 
+// start the prompt
 start();
-// add a student to roster 
